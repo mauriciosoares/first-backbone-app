@@ -12,6 +12,7 @@
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
 
 		<script type="text/template" id="users-list-template">
+			<a href="#/new">New User</a>
 			<ul>
 				<% _.each(users, function(user) { %>
 					<li><%= user.get('firstname') %></li>
@@ -43,17 +44,30 @@
 				}
 			});
 
+			var EditUser = Backbone.View.extend({
+				el: '.page',
+				render: function() {
+					this.$el.html('edit');
+				}
+			});
+
 			var userList = new UserList()
+			var editUser = new EditUser();
 
 			var Router = Backbone.Router.extend({
 				routes: {
-					'': 'home'
+					'': 'home',
+					'new': 'editUser'
 				}
 			});
 
 			var router = new Router();
 			router.on('route:home', function() {
 				userList.render();
+			});
+
+			router.on('route:editUser', function() {
+				editUser.render();
 			});
 
 			Backbone.history.start();
