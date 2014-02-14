@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="name" content="content">
+	</head>
+	<body>
+
+		<div class="page"></div>
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+
+		<script type="text/template" id="users-list-template">
+			<ul>
+				<% _.each(users, function(user) { %>
+					<li><%= user.get('firstname') %></li>
+				<% }); %>
+			</ul>
+
+		</script>
+			
+		<script>
+			$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+				options.url = 'https://backbonejs-beginner.herokuapp.com' + options.url;
+			});
+
+			var Users = Backbone.Collection.extend({
+				url: '/users'
+			});
+
+			var UserList = Backbone.View.extend({
+				el: '.page',
+				render: function() {
+					var users = new Users(),
+						_this = this;
+					users.fetch({
+						success: function(users) {
+							var template = _.template($('#users-list-template').html(), {users: users.models});
+							_this.$el.html(template);
+						}
+					});
+				}
+			});
+
+			var userList = new UserList()
+
+			var Router = Backbone.Router.extend({
+				routes: {
+					'': 'home'
+				}
+			});
+
+			var router = new Router();
+			router.on('route:home', function() {
+				userList.render();
+			});
+
+			Backbone.history.start();
+		</script>
+	</body>
+</html>
