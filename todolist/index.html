@@ -79,6 +79,7 @@
             },
 
             render: function() {
+                this.$el.html('');
                 _.each(itemsList.models, function(e) {
                     var item = new ItemView({model: e});
 
