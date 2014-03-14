@@ -8,9 +8,9 @@ var app = app || {};
             this.$input = this.$el.find('#new-todo');
             this.$list = this.$el.find('#list-todo');
 
-            app.todos.on('change', this.renderTodos, this);
             app.todos.on('add', this.renderTodos, this);
             app.todos.on('remove', this.renderTodos, this);
+            app.todos.on('change', this.renderTodos, this);
         },
 
         events: {
@@ -18,7 +18,7 @@ var app = app || {};
         },
 
         addTodo: function(e) {
-            if(e.which == ENTER_KEY && this.$input.val()) {
+            if(e.which === ENTER_KEY && this.$input.val()) {
                 app.todos.add({
                     title: this.$input.val(),
                     done: false

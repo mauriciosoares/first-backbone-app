@@ -8,6 +8,18 @@
         .is-checked {
             text-decoration: line-through;
         }
+
+        .is-edit div {
+            display: none;
+        }
+
+        .new-text {
+            display: none;
+        }
+
+        .is-edit .new-text {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -25,9 +37,13 @@
     <script type="text/template" id="item-template">
         <div id="<%= cid %>" class="<%= done ? 'is-checked' : '' %>">
             <input type="checkbox" class="done" <%= done ? 'CHECKED' : '' %> />
-            <%= title %>
+            <span class="text">
+                <%= title %>
+            </span>
             <a href="#" class="delete">X</a>
         </div>
+
+        <input type="text" class="new-text" value="<%= title %>" />
     </script>
 
     <!-- third part libraries -->
