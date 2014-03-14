@@ -7,7 +7,7 @@ var app = app || {};
         template: _.template($('#item-template').html()),
 
         events: {
-            'click': 'test'
+            'click': 'update'
         },
 
         initialize: function() {
@@ -25,8 +25,8 @@ var app = app || {};
             return this;
         },
 
-        test: function() {
-            console.log(this);
+        update: function() {
+            this.model.set({title: 'Yeah!'});
         }
     });
 } ());
