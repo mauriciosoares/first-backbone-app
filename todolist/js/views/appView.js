@@ -10,6 +10,7 @@ var app = app || {};
 
             app.todos.on('change', this.renderTodos, this);
             app.todos.on('add', this.renderTodos, this);
+            app.todos.on('remove', this.renderTodos, this);
         },
 
         events: {

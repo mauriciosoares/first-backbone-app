@@ -7,7 +7,8 @@ var app = app || {};
         template: _.template($('#item-template').html()),
 
         events: {
-            'click .done': 'toggleDone'
+            'click .done': 'toggleDone',
+            'click .delete': 'delete'
         },
 
         initialize: function() {
@@ -30,6 +31,12 @@ var app = app || {};
             this.model.set({
                 done: !this.model.get('done')
             });
+        },
+
+        delete:function(e) {
+            e.preventDefault();
+
+            app.todos.remove(this.model);
         }
     });
 } ());
