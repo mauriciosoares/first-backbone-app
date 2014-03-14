@@ -5,7 +5,17 @@ var app = app || {};
         el: '#todo-app',
 
         initialize: function() {
-            console.log(this.$el);
+            this.$input = this.$el.find('#new-todo');
+        },
+
+        events: {
+            'keypress #new-todo': 'addTodo'
+        },
+
+        addTodo: function(e) {
+            if(e.which == ENTER_KEY) {
+                console.log('teste');
+            }
         }
     });
 } ());
