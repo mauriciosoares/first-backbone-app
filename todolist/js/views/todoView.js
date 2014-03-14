@@ -7,7 +7,7 @@ var app = app || {};
         template: _.template($('#item-template').html()),
 
         events: {
-            'click': 'update'
+            'click .done': 'toggleDone'
         },
 
         initialize: function() {
@@ -17,6 +17,7 @@ var app = app || {};
         render: function() {
             var html = this.template({
                 title: this.model.get('title'),
+                done: this.model.get('done'),
                 cid: this.model.cid
             });
 
@@ -25,8 +26,10 @@ var app = app || {};
             return this;
         },
 
-        update: function() {
-            this.model.set({title: 'Yeah!'});
+        toggleDone: function() {
+            this.model.set({
+                done: !this.model.get('done')
+            });
         }
     });
 } ());

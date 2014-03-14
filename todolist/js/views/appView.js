@@ -19,7 +19,8 @@ var app = app || {};
         addTodo: function(e) {
             if(e.which == ENTER_KEY && this.$input.val()) {
                 app.todos.add({
-                    title: this.$input.val()
+                    title: this.$input.val(),
+                    done: false
                 });
 
                 this.$input.val('');

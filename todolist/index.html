@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <style>
+        .is-checked {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <div id="todo-app">
@@ -17,7 +23,8 @@
     </div>
 
     <script type="text/template" id="item-template">
-        <div id="<%= cid %>">
+        <div id="<%= cid %>" class="<%= done ? 'is-checked' : '' %>">
+            <input type="checkbox" class="done" <%= done ? 'CHECKED' : '' %> />
             <%= title %>
         </div>
     </script>
