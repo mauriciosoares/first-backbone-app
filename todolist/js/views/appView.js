@@ -18,11 +18,10 @@ var app = app || {};
         },
 
         addTodo: function(e) {
-            if(e.which === ENTER_KEY && this.$input.val()) {
+            if(e.which === ENTER_KEY) {
                 app.todos.add({
-                    title: this.$input.val(),
-                    done: false
-                });
+                    title: this.$input.val()
+                }, {validate: true});
 
                 this.$input.val('');
             }

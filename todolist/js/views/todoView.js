@@ -10,7 +10,8 @@ var app = app || {};
             'click .done': 'toggleDone',
             'click .delete': 'delete',
             'dblclick .text': 'edit',
-            'keydown .new-text': 'saveOrCloseEdit'
+            'keydown .new-text': 'saveOrCloseEdit',
+            'blur .new-text': 'close'
         },
 
         initialize: function() {
@@ -53,9 +54,17 @@ var app = app || {};
                 this.model.set({
                     title: this.$editInput.val()
                 });
+
+                if(!this.model.isValid()) {
+                    this.model.destroy();
+                }
             } else if(e.which === ESC_KEY) {
-                this.$el.removeClass('is-edit');
+                this.close();
             }
+        },
+
+        close: function() {
+            this.$el.removeClass('is-edit');
         }
     });
 } ());
