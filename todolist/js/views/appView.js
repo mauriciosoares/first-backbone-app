@@ -6,6 +6,7 @@ var app = app || {};
 
         initialize: function() {
             this.$input = this.$el.find('#new-todo');
+            this.$list = this.$el.find('#list-todo');
         },
 
         events: {
@@ -15,9 +16,23 @@ var app = app || {};
         addTodo: function(e) {
             if(e.which == ENTER_KEY) {
                 app.todos.add({
-                    title: 'yeah'
+                    title: this.$input.val()
                 });
+
+                this.renderTodos();
             }
+        },
+
+        renderTodos: function() {
+            this.$list.html('');
+
+            _.each(app.todos.models, function(todo) {
+                var todoHtml = new app.TodoView({
+                    model: todo
+                });
+
+                this.$list.append(todoHtml.el);
+            }, this);
         }
     });
 } ());
