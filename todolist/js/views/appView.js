@@ -14,7 +14,9 @@ var app = app || {};
 
         addTodo: function(e) {
             if(e.which == ENTER_KEY) {
-                console.log('teste');
+                app.todos.add({
+                    title: 'yeah'
+                });
             }
         }
     });
