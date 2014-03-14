@@ -1,6 +1,8 @@
 var app = app || {};
 
 (function() {
+    'use strict';
+
     app.TodoView = Backbone.View.extend({
         tagName: 'li',
 
