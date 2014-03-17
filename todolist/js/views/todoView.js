@@ -43,7 +43,7 @@ var app = app || {};
         delete:function(e) {
             e.preventDefault();
 
-            app.todos.remove(this.model);
+            this.model.destroy();
         },
 
         edit: function() {
